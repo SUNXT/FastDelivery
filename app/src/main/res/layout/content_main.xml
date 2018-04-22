@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.sun.fastdelivery.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <com.amap.api.maps2d.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.amap.api.maps2d.MapView>
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:layout_marginLeft="24dp"
+        android:padding="5dp"
+        android:background="@drawable/white_oval"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+    <View
+        android:id="@+id/centerView"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/ivCenterLocation"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/location"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/centerView"/>
+
+    <TextView
+        android:id="@+id/tvCurrentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="200dp"
+        android:layout_above="@+id/ivCenterLocation"
+        android:layout_centerHorizontal="true"
+        android:text="华师地铁站"
+        android:background="@drawable/white_corners"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@android:color/black"
+        android:textSize="10sp"/>
+
+</RelativeLayout>

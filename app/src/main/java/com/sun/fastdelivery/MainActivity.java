@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,9 @@ public class MainActivity extends AppCompatActivity
     TextView mTvCurrentLocation;
     private GeocodeSearch geocoderSearch;
 
+    /**
+     * 点击定位按钮，回到当前定位
+     */
     @OnClick(R.id.ivLocation)
     public void location(){
         if (mLocationClient != null){
@@ -57,8 +62,18 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * 点击我要下单按钮，跳转到创建订单界面
+     */
+    @OnClick(R.id.llOrder)
+    public void goOrderView(){
+
+    }
+
     private AMap mMap;//地图控制器
     private UiSettings mUiSettings;//地图UI设置器
+    private String mCurrentLocationText;//当前位置的文本表示
+    private LatLng mCurrentLatLng;//当前位置的经纬度
 
     /**
      * 定位
@@ -322,13 +337,15 @@ public class MainActivity extends AppCompatActivity
         // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
         LatLonPoint latLonPoint = new LatLonPoint(cameraPosition.target.latitude, cameraPosition.target.longitude);
         RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.AMAP);
-        geocoderSearch.getFromLocationAsyn(query);
+        mCurrentLatLng = cameraPosition.target;//对当前中心经纬度进行记录
+        geocoderSearch.getFromLocationAsyn(query);//查询当前地址的地理位置信息
     }
 
     @Override
     public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
         RegeocodeAddress address = regeocodeResult.getRegeocodeAddress();
         Log.d(TAG, address.getFormatAddress());
+        mCurrentLocationText = address.getFormatAddress();
         mTvCurrentLocation.setText(address.getFormatAddress());
     }
 

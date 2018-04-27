@@ -1,19 +1,17 @@
-package com.sun.fastdelivery;
+package com.sun.fastdelivery.view;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -34,8 +32,7 @@ import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
-
-import java.util.Map;
+import com.sun.fastdelivery.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,7 +64,8 @@ public class MainActivity extends AppCompatActivity
      */
     @OnClick(R.id.llOrder)
     public void goOrderView(){
-
+        Intent intent = new Intent(this, CreateOrderActivity.class);
+        startActivity(intent);
     }
 
     private AMap mMap;//地图控制器
@@ -184,6 +182,9 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            // TODO: 2018/4/27 测试
+            Intent intent = new Intent(this, ChooseCityActivity.class);
+            startActivity(intent);
             return true;
         }
 

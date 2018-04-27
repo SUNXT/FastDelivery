@@ -1,7 +1,9 @@
-package com.sun.fastdelivery;
+package com.sun.fastdelivery.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.sun.fastdelivery.R;
 
 public class CreateOrderActivity extends AppCompatActivity {
 

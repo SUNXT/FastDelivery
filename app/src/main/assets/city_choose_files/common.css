@@ -1,0 +1,11 @@
+
+.noti-tip{
+position:absolute;
+top:0;
+left:0;
+right:0;
+text-align:center;
+background:red;
+color:#fff;
+line-height:150%;
+}

@@ -8,4 +8,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlack45">#8c000000</color>
     <color name="colorGrayE">#eeeeee</color>
+    <color name="black">#000000</color>
 </resources>

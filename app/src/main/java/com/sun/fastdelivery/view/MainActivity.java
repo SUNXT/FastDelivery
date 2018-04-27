@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity
     @OnClick(R.id.llOrder)
     public void goOrderView(){
         Intent intent = new Intent(this, CreateOrderActivity.class);
+        intent.putExtra("location", mCurrentLocationText);
         startActivity(intent);
     }
 

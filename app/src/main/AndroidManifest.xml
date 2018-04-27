@@ -42,7 +42,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.CreateOrderActivity" />
-        <activity android:name=".view.ChooseCityActivity"></activity>
+        <activity android:name=".view.ChooseCityActivity" />
+        <activity android:name=".view.CompleteLocationInfoActivity"></activity>
     </application>
 
 </manifest>

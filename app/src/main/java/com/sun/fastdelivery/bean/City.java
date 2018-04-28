@@ -1,11 +1,16 @@
 package com.sun.fastdelivery.bean;
 
+import java.io.Serializable;
+
 /**
  * 高德地图中的城市类
  * Created by SUN on 2018/4/27.
  */
 
-public class City {
+public class City implements Serializable{
+
+    public static String TAG = "City";
+
 //     {"adcode":"654300","name":"阿勒泰地区","spell":"Altay","lng":88.13963,"lat":47.848393,"areaCode":"0906"}
     private String adcode;//城市编号
     private String name;//城市名

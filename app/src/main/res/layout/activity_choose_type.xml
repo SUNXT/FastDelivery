@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayE"
+    tools:context="com.sun.fastdelivery.view.ChooseGoodTypeActivity">
+    <RelativeLayout
+        android:id="@+id/rlTopBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:background="@android:color/white">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/back_icon_size"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="物品类型"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/top_bar_title_text_size"
+            android:textColor="@color/black"/>
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gvType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rlTopBar"
+        android:layout_marginTop="1dp"
+        android:numColumns="4"
+        android:background="@color/white">
+    </GridView>
+
+
+    <Button
+        android:id="@+id/btnSure"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:background="@drawable/blue_corners"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        />
+
+</RelativeLayout>

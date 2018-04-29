@@ -29,6 +29,127 @@
             android:textColor="@color/black"
             android:drawableRight="@drawable/down"
             android:drawablePadding="5dp"/>
+        <TextView
+            android:id="@+id/tvSure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="确定"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/activity_horizontal_margin"/>
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tvCurrentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:textColor="@color/black"
+        android:text="当前位置"/>
+
+    <EditText
+        android:id="@+id/etAddressInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:hint="请补充地址：详细门牌号、楼号、房间号"
+        android:maxLines="1"
+        android:inputType="text"
+        android:textSize="14sp"
+        android:padding="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="1dp"
+        android:background="@color/white">
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            android:hint="请输入姓名"
+            android:maxLines="1"
+            android:inputType="text"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_weight="2"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textSize="20sp"
+            android:textColor="@color/colorGrayE"/>
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            android:hint="请输入手机号码"
+            android:singleLine="true"
+            android:inputType="number"
+            android:textSize="14sp"
+            android:padding="10dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white">
+        <com.amap.api.maps2d.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.amap.api.maps2d.MapView>
+        <ImageView
+            android:id="@+id/ivLocation"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:padding="5dp"
+            android:background="@drawable/white_oval"
+            app:srcCompat="@android:drawable/ic_menu_mylocation" />
+        <ImageView
+            android:layout_width="@dimen/little_icon_size"
+            android:layout_height="@dimen/little_icon_size"
+            android:src="@drawable/location"
+            android:layout_above="@+id/centerView"
+            android:layout_centerHorizontal="true"
+            />
+        <View
+            android:id="@+id/centerView"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:text="附近地址"
+        android:layout_marginTop="1dp"/>
+
+    <ListView
+        android:id="@+id/lvNearbyLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="1dp">
+    </ListView>
 </LinearLayout>

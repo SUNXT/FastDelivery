@@ -1,5 +1,6 @@
 package com.sun.fastdelivery.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebSettings;
@@ -42,7 +43,10 @@ public class ChooseCityActivity extends AppCompatActivity {
         chooseCityToJs.setOnChooseListener(new ChooseCityToJs.OnChooseListener() {
             @Override
             public void onChoose(City city) {
-                ToastUtils.showToast(city.toString());
+                Intent data = new Intent();
+                data.putExtra(City.TAG, city);
+                setResult(RESULT_OK, data);
+                finish();
             }
         });
         mWebView.addJavascriptInterface(chooseCityToJs, "chooseCityToJs");//调用安卓的方法

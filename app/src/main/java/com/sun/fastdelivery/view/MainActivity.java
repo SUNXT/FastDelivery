@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity
     MapView mMapView;
     @BindView(R.id.tvCurrentLocation)
     TextView mTvCurrentLocation;
-    private GeocodeSearch geocoderSearch;
 
     /**
      * 点击定位按钮，回到当前定位
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity
     public void goOrderView(){
         Intent intent = new Intent(this, CreateOrderActivity.class);
         intent.putExtra("location", mCurrentLocationText);
+        intent.putExtra("latLng", mCurrentLatLng);
         startActivity(intent);
     }
 
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity
     private UiSettings mUiSettings;//地图UI设置器
     private String mCurrentLocationText;//当前位置的文本表示
     private LatLng mCurrentLatLng;//当前位置的经纬度
+    private GeocodeSearch mGeocodeSearch;//高德滴入的地址转换
 
     /**
      * 定位
@@ -100,6 +101,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        initMap(savedInstanceState);
+    }
+
+    private void initMap(Bundle savedInstanceState) {
         mMapView.onCreate(savedInstanceState);//地图初始化
         mMap = mMapView.getMap();//获取地图控制器
         mUiSettings = mMap.getUiSettings();
@@ -120,13 +125,13 @@ public class MainActivity extends AppCompatActivity
         mUiSettings.setAllGesturesEnabled(true);
         mUiSettings.setLogoPosition(AMapOptions.LOGO_POSITION_BOTTOM_RIGHT);//设置logo位置
         mUiSettings.setZoomControlsEnabled(false);
-        mMap.setOnMapClickListener(this);//设置点击地图的监听
         mMap.setOnCameraChangeListener(this);
 
         //进行坐标转换
-        geocoderSearch = new GeocodeSearch(this);
-        geocoderSearch.setOnGeocodeSearchListener(this);
+        mGeocodeSearch = new GeocodeSearch(this);
+        mGeocodeSearch.setOnGeocodeSearchListener(this);
     }
+
 
     /**
      * 开始定位
@@ -340,7 +345,7 @@ public class MainActivity extends AppCompatActivity
         LatLonPoint latLonPoint = new LatLonPoint(cameraPosition.target.latitude, cameraPosition.target.longitude);
         RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.AMAP);
         mCurrentLatLng = cameraPosition.target;//对当前中心经纬度进行记录
-        geocoderSearch.getFromLocationAsyn(query);//查询当前地址的地理位置信息
+        mGeocodeSearch.getFromLocationAsyn(query);//查询当前地址的地理位置信息
     }
 
     @Override

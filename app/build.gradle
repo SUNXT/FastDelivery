@@ -1,6 +1,18 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+// 添加插件
+apply plugin: "com.mob.sdk"
+
+// 在MobSDK的扩展中注册SMSSDK的相关信息
+MobSDK {
+    appKey "2585c79931f68"
+    appSecret "555d2f784e98acada0e61a25017cf46e"
+    SMSSDK {
+        gui false
+    }
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -61,6 +73,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'com.squareup.okio:okio:1.12.0'
+    compile 'com.github.sunxt:MultiEditText:1.0.5'
+    compile 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
 }

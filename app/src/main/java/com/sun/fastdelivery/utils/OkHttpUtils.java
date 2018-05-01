@@ -137,7 +137,8 @@ public class OkHttpUtils {
         enqueueUrl(url, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                listener.onFailure(OnModelCallback.OK_HTTP_ERROR, "OkHttp--OnFailure()  Message: " + e.getMessage());
+                Log.e(Tag, "OkHttp--OnFailure()  Message: " + e.getMessage());
+                listener.onFailure(OnModelCallback.OK_HTTP_ERROR, "网络访问出错！");
             }
 
             @Override
@@ -146,7 +147,8 @@ public class OkHttpUtils {
                     ResponseBean responseBean = JsonUtils.jsonStrToResponseBean(response.body().string());
                     onSuccessCallBack.onSuccess(responseBean);
                 }else {
-                    listener.onFailure(OnModelCallback.OK_HTTP_ERROR, "OkHttp--OnResponse()  Message: " + response.message());
+                    Log.e(Tag, "OkHttp--OnResponse()  Message: " + response.message());
+                    listener.onFailure(OnModelCallback.OK_HTTP_ERROR, "网络访问出错！");
                 }
             }
         });

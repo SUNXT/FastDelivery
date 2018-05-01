@@ -1,5 +1,9 @@
 package com.sun.fastdelivery.bean;
 
+import android.text.TextUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -8,6 +12,9 @@ import java.io.Serializable;
  * Created by SUN on 2017/5/8.
  */
 public class ResponseBean implements Serializable {
+
+    public static final String CODE_SUCCESS = "0";
+
     private String code;
     private String message;
     private Object content;
@@ -38,8 +45,23 @@ public class ResponseBean implements Serializable {
         }
     }
 
+    public JSONArray getJsonArray(){
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("list", content.toString());
+            return jsonObject.getJSONArray("list");
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return new JSONArray();
+        }
+    }
+
     public void setContent(Object content) {
         this.content = content;
+    }
+
+    public static boolean isSuccessCode(String code){
+        return TextUtils.equals(CODE_SUCCESS, code);
     }
 
     @Override

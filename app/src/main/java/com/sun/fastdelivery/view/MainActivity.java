@@ -1,16 +1,21 @@
 package com.sun.fastdelivery.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
@@ -33,10 +38,21 @@ import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.sun.fastdelivery.R;
+import com.sun.fastdelivery.bean.Order;
+import com.sun.fastdelivery.bean.User;
+import com.sun.fastdelivery.model.OrderModel;
+import com.sun.fastdelivery.model.callback.OnModelCallback;
+import com.sun.fastdelivery.utils.ToastUtils;
+import com.sun.fastdelivery.utils.UserSpUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.sun.fastdelivery.R.id.tvPhone;
+import static com.sun.fastdelivery.utils.UserSpUtils.getUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AMapLocationListener, LocationSource, AMap.OnMapClickListener, AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener {
@@ -69,6 +85,9 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    private long keyDownTime = 0;//返回时记录的系统时间
+    private long timeInterval = 2000;//双击退出的时间间隔
+
     private AMap mMap;//地图控制器
     private UiSettings mUiSettings;//地图UI设置器
     private String mCurrentLocationText;//当前位置的文本表示
@@ -82,6 +101,9 @@ public class MainActivity extends AppCompatActivity
     private AMapLocationClientOption mLocationOption;
     private LocationSource.OnLocationChangedListener mListener;
     private String TAG = getClass().getSimpleName();
+
+    //注销对话框
+    private AlertDialog.Builder mLogoutDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +124,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         initMap(savedInstanceState);
+
+        String phone = UserSpUtils.getUser(this).getUserPhone();
+        if (!TextUtils.isEmpty(phone)){
+            TextView tvPhone = navigationView.getHeaderView(0).findViewById(R.id.tvPhone);
+            tvPhone.setText(phone.substring(0, 3) + "****" + phone.substring(phone.length()-4, phone.length()));
+        }
+
     }
 
     private void initMap(Bundle savedInstanceState) {
@@ -161,6 +190,21 @@ public class MainActivity extends AppCompatActivity
         mLocationClient.startLocation();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - keyDownTime < timeInterval){
+                finish();
+            }else {
+                ToastUtils.showToast("再按一次，退出程序");
+                keyDownTime = currentTime;
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -188,9 +232,18 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            // TODO: 2018/4/27 测试
-            Intent intent = new Intent(this, ChooseCityActivity.class);
-            startActivity(intent);
+            // TODO: 2018/5/2
+            OrderModel.getInstance().getAllOrders(UserSpUtils.getUser(this), new OnModelCallback<List<Order>>() {
+                @Override
+                public void onSuccess(List<Order> data) {
+
+                }
+
+                @Override
+                public void onFailure(String code, String msg) {
+                    Log.e(TAG, "orderList: " + msg);
+                }
+            });
             return true;
         }
 
@@ -203,18 +256,31 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_order) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_bike) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_rule) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_logout) {
+            if (mLogoutDialog == null){
+                mLogoutDialog = new AlertDialog.Builder(this)
+                        .setCancelable(true)
+                        .setMessage("确定要退出该账号吗？")
+                        .setPositiveButton("注销", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                UserSpUtils.logout(MainActivity.this);
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("取消", null);
+            }
+            mLogoutDialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

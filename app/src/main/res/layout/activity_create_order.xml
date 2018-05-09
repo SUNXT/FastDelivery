@@ -241,6 +241,7 @@
             android:text="不限工具"
             android:checked="true"/>
         <RadioButton
+            android:id="@+id/rbTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="汽车配送"/>

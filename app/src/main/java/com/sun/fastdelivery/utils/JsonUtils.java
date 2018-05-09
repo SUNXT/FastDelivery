@@ -31,6 +31,11 @@ public class JsonUtils {
         return fromJson(tClass, jsonStr.toString());
     }
 
+    public static String toJson(Object obj){
+        Gson gson = new Gson();
+        return gson.toJson(obj);
+    }
+
     /**
      *
      * @param clazz bean类的Class

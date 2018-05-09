@@ -2,6 +2,7 @@ package com.sun.fastdelivery.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.TextUtils;
 
 import com.amap.api.maps2d.model.LatLng;
 
@@ -81,6 +82,13 @@ public class DispatchInformation implements Parcelable{
     private String address;
     private String userName;
     private String userPhone;
+
+    //判断是否所有属性不为空
+    public boolean isAllNotNull(){
+        return !(TextUtils.isEmpty(location)||TextUtils.isEmpty(address)||
+                TextUtils.isEmpty(userName) || TextUtils.isEmpty(userPhone)
+                || latLng == null);
+    }
 
     @Override
     public int describeContents() {

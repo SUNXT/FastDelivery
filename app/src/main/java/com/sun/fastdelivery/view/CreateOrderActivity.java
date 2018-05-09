@@ -1,23 +1,36 @@
 package com.sun.fastdelivery.view;
 
 import android.content.Intent;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.amap.api.maps2d.AMapUtils;
 import com.amap.api.maps2d.model.LatLng;
+import com.mingle.widget.ShapeLoadingDialog;
 import com.sun.fastdelivery.R;
+import com.sun.fastdelivery.bean.CreateOrderDto;
 import com.sun.fastdelivery.bean.DispatchInformation;
 import com.sun.fastdelivery.bean.GoodType;
+import com.sun.fastdelivery.bean.Order;
+import com.sun.fastdelivery.bean.User;
+import com.sun.fastdelivery.presenter.CreateOrderPresenter;
+import com.sun.fastdelivery.utils.JsonUtils;
 import com.sun.fastdelivery.utils.ToastUtils;
+import com.sun.fastdelivery.utils.UserSpUtils;
+import com.sun.fastdelivery.view.base.BaseActivity;
+import com.sun.fastdelivery.view.base.ICreateOrderView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CreateOrderActivity extends AppCompatActivity {
+public class CreateOrderActivity extends BaseActivity<CreateOrderPresenter, ICreateOrderView> implements ICreateOrderView{
 
     private String TAG = getClass().getSimpleName();
 
@@ -33,6 +46,10 @@ public class CreateOrderActivity extends AppCompatActivity {
     TextView mTvGoodType;
     @BindView(R.id.tvWeight)
     TextView mTvWeight;
+    @BindView(R.id.etExtraInfo)
+    EditText mEtExtraInfo;
+    @BindView(R.id.rgTools)
+    RadioGroup mRgTools;
     @BindView(R.id.tvMoney)
     TextView mTvMoney;
 
@@ -91,7 +108,7 @@ public class CreateOrderActivity extends AppCompatActivity {
      */
     @OnClick(R.id.btnCreateOrder)
     public void createOrder(){
-
+        mPresenter.createOrder();
     }
 
     private final int CODE_SEND_INFO = 11;
@@ -102,7 +119,9 @@ public class CreateOrderActivity extends AppCompatActivity {
     private DispatchInformation mSendInfo = new DispatchInformation();
     private DispatchInformation mReceiveInfo;
     private GoodType mGoodType;
+    private String mTools = "不限工具";
     private int mOrderMoney = 0;
+    private ShapeLoadingDialog mLoadingView;//进度对话框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +129,11 @@ public class CreateOrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_order);
         ButterKnife.bind(this);
         init();
+    }
+
+    @Override
+    protected CreateOrderPresenter createPresenter() {
+        return new CreateOrderPresenter();
     }
 
 
@@ -121,6 +145,21 @@ public class CreateOrderActivity extends AppCompatActivity {
             mSendInfo.setLocation(location);
             mSendInfo.setLatLng((LatLng) data.getParcelableExtra("latLng"));
         }
+
+        mRgTools.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (checkedId == R.id.rbOne){
+                    mTools = "不限工具";
+                }else {
+                    mTools = "汽车配送";
+                }
+            }
+        });
+
+        mLoadingView = new ShapeLoadingDialog(this);
+        mLoadingView.setLoadingText("创建订单中...");
+        mLoadingView.setCanceledOnTouchOutside(false);
     }
 
     /**
@@ -164,4 +203,65 @@ public class CreateOrderActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void showLoading() {
+        mLoadingView.show();
+    }
+
+    @Override
+    public void stopLoading() {
+        mLoadingView.dismiss();
+    }
+
+    @Override
+    public DispatchInformation getSendInfo() {
+        return mSendInfo;
+    }
+
+    @Override
+    public DispatchInformation getReceivedInfo() {
+        return mReceiveInfo;
+    }
+
+    @Override
+    public User getUser() {
+        return UserSpUtils.getUser(this);
+    }
+
+    @Override
+    public GoodType getGoodType() {
+        return mGoodType;
+    }
+
+    @Override
+    public String getExtraInfo() {
+        return mEtExtraInfo.getText().toString().trim();
+    }
+
+    @Override
+    public int getGoodWeight() {
+        return mGoodWeight;
+    }
+
+    @Override
+    public String getDistributionUtil() {
+        return mTools;
+    }
+
+    @Override
+    public double getOrderMoney() {
+        return mOrderMoney;
+    }
+
+    @Override
+    public void onCreateOrderSuccess(CreateOrderDto order) {
+        ToastUtils.showToast("创建订单成功！");
+        Log.d(TAG, JsonUtils.toJson(order));
+
+    }
+
+    @Override
+    public void onFailure(String msg) {
+        ToastUtils.showToast(msg);
+    }
 }

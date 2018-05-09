@@ -186,7 +186,12 @@ public class OkHttpUtils {
     //结果回调到主线程的方法
     public static void executeRequest(String url, Map<String, Object> params, final OnModelCallback listener, final OnSuccessCallBack onSuccessCallBack){
         JSONObject json = new JSONObject(params);
-        enqueue(url, json.toString(), new Callback() {
+        executeRequest(url, json.toString(), listener, onSuccessCallBack);
+    }
+
+    //结果回调到主线程的方法
+    public static void executeRequest(String url, String json, final OnModelCallback listener, final OnSuccessCallBack onSuccessCallBack){
+        enqueue(url, json, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 String msg = "OkHttp--OnFailure()  Message: " + e.getMessage();
@@ -208,6 +213,7 @@ public class OkHttpUtils {
             }
         });
     }
+
 
 
     public class KeyValue {

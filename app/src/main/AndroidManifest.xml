@@ -46,7 +46,8 @@
         <activity android:name=".view.CompleteLocationInfoActivity" />
         <activity android:name=".view.ChooseGoodTypeActivity" />
         <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.MainActivity"></activity>
+        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.OrderManagerActivity"></activity>
     </application>
 
 </manifest>

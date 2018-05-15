@@ -51,6 +51,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.sun.fastdelivery.R.id.start;
 import static com.sun.fastdelivery.R.id.tvPhone;
 import static com.sun.fastdelivery.utils.UserSpUtils.getUser;
 
@@ -233,17 +234,8 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             // TODO: 2018/5/2
-            OrderModel.getInstance().getAllOrders(UserSpUtils.getUser(this), new OnModelCallback<List<Order>>() {
-                @Override
-                public void onSuccess(List<Order> data) {
-
-                }
-
-                @Override
-                public void onFailure(String code, String msg) {
-                    Log.e(TAG, "orderList: " + msg);
-                }
-            });
+            Intent intent = new Intent(this, PayOrderActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -257,6 +249,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_order) {
+            Intent intent = new Intent(this, OrderManagerActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_bike) {
 

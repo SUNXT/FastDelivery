@@ -47,7 +47,8 @@
         <activity android:name=".view.ChooseGoodTypeActivity" />
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.OrderManagerActivity"></activity>
+        <activity android:name=".view.PayOrderActivity"/>
+        <activity android:name=".view.OrderManagerActivity"/>
     </application>
 
 </manifest>

@@ -6,7 +6,13 @@
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="top_bar_height">50dp</dimen>
+    <dimen name="bottom_bar_height">50dp</dimen>
     <dimen name="back_icon_size">24dp</dimen>
     <dimen name="top_bar_title_text_size">16sp</dimen>
     <dimen name="little_icon_size">20dp</dimen>
+
+    <!--margin-->
+    <dimen name="sizeOfLittleMargin">5dp</dimen>
+    <dimen name="sizeOfMiddleMargin">10dp</dimen>
+    <dimen name="sizeOfLagerMargin">15dp</dimen>
 </resources>

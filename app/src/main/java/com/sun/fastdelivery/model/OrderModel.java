@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * Created by sunxuedian on 2018/5/2.
  */
@@ -56,8 +57,61 @@ public class OrderModel {
         });
     }
 
-    public void payOrder(User user, Long orderId, OnModelCallback callback){
+    /**
+     * 支付订单
+     * @param user
+     * @param orderId
+     * @param money
+     * @param payWay
+     * @param callback
+     */
+    public void payOrder(User user, Long orderId, double money, String payWay, final OnModelCallback<String> callback){
+        Map<String, Object> params = new HashMap<>();
+        Map<String, String> token = new HashMap<>();
+        token.put("tokenValue", user.getAllocatedToken());
+        token.put("userPhone", user.getUserPhone());
+        params.put("token", token);
+        params.put("userId", user.getUserId());
+        params.put("orderId", orderId);
+        params.put("payAmount", money);
+        params.put("payWay", payWay);
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_PAY_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (ResponseBean.isSuccessCode(responseBean.getCode())){
+                    callback.onSuccess("支付成功！");
+                }else {
+                    callback.onFailure(responseBean.getCode(), responseBean.getMessage());
+                }
+            }
+        });
+    }
 
+    /**
+     * 取消订单
+     * @param user
+     * @param orderId
+     * @param callback
+     */
+    public void cancelOrder(User user, Long orderId, final OnModelCallback callback){
+        Map<String, Object> params = new HashMap<>();
+        Map<String, String> token = new HashMap<>();
+        token.put("tokenValue", user.getAllocatedToken());
+        token.put("userPhone", user.getUserPhone());
+        params.put("token", token);
+        params.put("orderId", orderId);
+        params.put("userId", user.getUserId());
+        Log.e(TAG, params.toString());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_CANCEL_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (ResponseBean.isSuccessCode(responseBean.getCode())){
+                    callback.onSuccess("取消成功！");
+                }else {
+                    callback.onFailure(responseBean.getCode(), responseBean.getMessage());
+                }
+            }
+        });
     }
 
     /**

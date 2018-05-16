@@ -12,5 +12,7 @@ public class UrlParamsUtils {
     public static String URL_LOGIN = IP + "/user/login";//登录接口
     public static String URL_QUERY_ORDER = IP + "/order/queryOrder";//获取所有订单列表
     public static String URL_CREATE_ORDER = IP + "/order/createOrder";//创建订单
+    public static String URL_PAY_ORDER = IP + "/order/payOrder";//支付订单
+    public static String URL_CANCEL_ORDER = IP + "/order/cancelOrder";//取消订单
 
 }

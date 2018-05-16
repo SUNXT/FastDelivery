@@ -53,6 +53,14 @@ public class OrderManagerActivity extends BaseActivity<OrderManagerPresenter, IO
         initView();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 11 && resultCode == RESULT_OK){
+            mPresenter.getOrderList();//有更新
+        }
+    }
+
     private void initView(){
 
         mTvTitle.setText("订单管理");
@@ -88,7 +96,7 @@ public class OrderManagerActivity extends BaseActivity<OrderManagerPresenter, IO
                 if (order.getStatus() == Order.STATUS_CREATE){
                     Intent intent = new Intent(OrderManagerActivity.this, PayOrderActivity.class);
                     intent.putExtra(Order.TAG, order);
-                    startActivity(intent);
+                    startActivityForResult(intent, 11);
                 }else {
 
                 }

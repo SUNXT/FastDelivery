@@ -18,6 +18,7 @@ import com.sun.fastdelivery.bean.CreateOrderDto;
 import com.sun.fastdelivery.bean.DispatchInformation;
 import com.sun.fastdelivery.bean.GoodType;
 import com.sun.fastdelivery.bean.Order;
+import com.sun.fastdelivery.bean.OrderShippingInfo;
 import com.sun.fastdelivery.bean.User;
 import com.sun.fastdelivery.presenter.CreateOrderPresenter;
 import com.sun.fastdelivery.utils.JsonUtils;
@@ -25,6 +26,8 @@ import com.sun.fastdelivery.utils.ToastUtils;
 import com.sun.fastdelivery.utils.UserSpUtils;
 import com.sun.fastdelivery.view.base.BaseActivity;
 import com.sun.fastdelivery.view.base.ICreateOrderView;
+
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -254,10 +257,30 @@ public class CreateOrderActivity extends BaseActivity<CreateOrderPresenter, ICre
     }
 
     @Override
-    public void onCreateOrderSuccess(CreateOrderDto order) {
+    public void onCreateOrderSuccess(CreateOrderDto orderDto) {
         ToastUtils.showToast("创建订单成功！");
-        Log.d(TAG, JsonUtils.toJson(order));
+        Log.d(TAG, JsonUtils.toJson(orderDto));
+        Intent intent = new Intent(this, PayOrderActivity.class);
+        Order order = new Order();
+        order.setCreateTime(new Date(System.currentTimeMillis()).toLocaleString());
+        order.setOrderId(orderDto.getOrderId());
+        order.setGoodType(orderDto.getGoodType());
+        order.setGoodWeight(orderDto.getGoodWeight());
+        order.setOrderPrice(orderDto.getOrderPrice());
+        order.setPosterName(orderDto.getPosterName());
+        order.setPosterPhone(orderDto.getPosterPhone());
+        order.setReceiverName(orderDto.getReceiverName());
+        order.setReceiverPhone(orderDto.getReceiverPhone());
 
+        OrderShippingInfo shippingInfo = new OrderShippingInfo();
+        shippingInfo.setDeparture(orderDto.getDeparture());
+        shippingInfo.setDestination(orderDto.getDestination());
+        shippingInfo.setDistributionUtil(orderDto.getDistributionUtil());
+        order.setOrderShippingInfo(shippingInfo);
+
+        intent.putExtra(Order.TAG, order);
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.sun.fastdelivery.bean;
 
+import java.io.Serializable;
+
 /**
  * 订单的派送情况，及派送到哪个地点了的一些信息
  * Created by sunxuedian on 2018/5/16.
  */
 
-public class OrderShippingInfo {
+public class OrderShippingInfo implements Serializable{
 
     private long orderShippingId;
     private String departure;//寄件地点

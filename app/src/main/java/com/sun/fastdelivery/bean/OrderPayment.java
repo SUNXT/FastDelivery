@@ -1,11 +1,13 @@
 package com.sun.fastdelivery.bean;
 
+import java.io.Serializable;
+
 /**
  * 支付订单的信息
  * Created by sunxuedian on 2018/5/16.
  */
 
-public class OrderPayment {
+public class OrderPayment implements Serializable{
 
     private long orderPaymentId;
     private long orderId;//订单id

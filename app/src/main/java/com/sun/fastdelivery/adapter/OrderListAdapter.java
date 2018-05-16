@@ -31,6 +31,10 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
+    public Order getItem(int pos){
+        return mData.get(pos);
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.order_list_item, parent, false);
@@ -43,6 +47,26 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         holder.mTvTime.setText(order.getCreateTime());
         holder.mTvReceiveInfo.setText("寄件：" + order.getOrderShippingInfo().getDeparture());
         holder.mTvSendInfo.setText("收件：" + order.getOrderShippingInfo().getDestination());
+        String status = "已创建";
+        switch (order.getStatus()){
+            case Order.STATUS_CANCEL:
+                holder.mTvStatus.setTextColor(mContext.getResources().getColor(R.color.red));
+                status = "已取消";
+                break;
+            case Order.STATUS_PAY:
+                holder.mTvStatus.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+                status = "已支付";
+                break;
+            case Order.STATUS_SENDING:
+                holder.mTvStatus.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+                status = "派送中";
+                break;
+            case Order.STATUS_COMPLETE:
+                holder.mTvStatus.setTextColor(mContext.getResources().getColor(R.color.black));
+                status = "已送达";
+                break;
+        }
+        holder.mTvStatus.setText(status);
     }
 
     @Override
@@ -55,8 +79,9 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
         TextView mTvTime;
         TextView mTvSendInfo;
         TextView mTvReceiveInfo;
+        TextView mTvStatus;
 
-        public MyViewHolder(final View itemView) {
+        MyViewHolder(final View itemView) {
             super(itemView);
             if (mOnItemClickListener != null){
                 itemView.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +94,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.MyVi
             mTvTime = itemView.findViewById(R.id.tvCreateTime);
             mTvSendInfo = itemView.findViewById(R.id.tvSendInfo);
             mTvReceiveInfo = itemView.findViewById(R.id.tvReceiveInfo);
+            mTvStatus = itemView.findViewById(R.id.tvStatus);
         }
     }
 

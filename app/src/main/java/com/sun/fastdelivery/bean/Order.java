@@ -1,13 +1,14 @@
 package com.sun.fastdelivery.bean;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by sunxuedian on 2018/5/2.
  */
 
-public class Order {
+public class Order implements Serializable{
+
+    public static String TAG = "Order";
 
     //业务订单编号
     private Long orderId;
@@ -28,6 +29,11 @@ public class Order {
     private int goodType;
     //订单状态
     private Integer status;// --- -1/已取消 0/已创建  1/已支付  2/配送中  3/已完成
+    public static final int STATUS_CANCEL = -1;
+    public static final int STATUS_CREATE = 0;
+    public static final int STATUS_PAY = 1;
+    public static final int STATUS_SENDING = 2;
+    public static final int STATUS_COMPLETE = 3;
     //订单备注
     private String remark;
     //订单创建时间

@@ -1,5 +1,6 @@
 package com.sun.fastdelivery.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,7 +84,14 @@ public class OrderManagerActivity extends BaseActivity<OrderManagerPresenter, IO
         mAdapter.setOnItemClickListener(new OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View view, int pos) {
-                ToastUtils.showToast(pos + "");
+                Order order = mAdapter.getItem(pos);
+                if (order.getStatus() == Order.STATUS_CREATE){
+                    Intent intent = new Intent(OrderManagerActivity.this, PayOrderActivity.class);
+                    intent.putExtra(Order.TAG, order);
+                    startActivity(intent);
+                }else {
+
+                }
             }
         });
         mRvOrders.setLayoutManager(new LinearLayoutManager(this));

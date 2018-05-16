@@ -5,8 +5,116 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGrayE"
+    android:orientation="vertical"
     tools:context="com.sun.fastdelivery.view.PayOrderActivity">
 
     <include layout="@layout/top_bar"/>
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="已创建"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:paddingTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/tvOrderId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="订单号：13434"
+        android:textSize="10sp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:background="@color/white"
+        android:paddingTop="10dp"
+        android:paddingBottom="8dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:src="@drawable/color_cut_line"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="寄件信息"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/tvSendLocationInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:maxLines="2"
+        android:lines="2"
+        android:layout_marginTop="1dp"
+        />
+
+    <TextView
+        android:id="@+id/tvSendContactInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="联系人："
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/color_cut_line"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:scaleType="fitXY"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="收件信息"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/tvReceiveLocationInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:maxLines="2"
+        android:layout_marginTop="1dp"
+        />
+
+    <TextView
+        android:id="@+id/tvReceiveContactInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="联系人："
+        android:textColor="@color/colorAccent"
+        android:textSize="10sp"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
 
 </LinearLayout>

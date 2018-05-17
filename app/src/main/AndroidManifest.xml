@@ -34,22 +34,39 @@
         <activity
             android:name=".view.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.CreateOrderActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.ChooseCityActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.CompleteLocationInfoActivity" android:screenOrientation="portrait" />
-        <activity android:name=".view.ChooseGoodTypeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.LoginActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.MainActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.PayOrderActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".view.OrderManagerActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.CreateOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ChooseCityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CompleteLocationInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.ChooseGoodTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.PayOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.OrderManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.OrderDetailActivity"></activity>
     </application>
 
 </manifest>

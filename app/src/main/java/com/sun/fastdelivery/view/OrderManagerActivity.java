@@ -98,7 +98,9 @@ public class OrderManagerActivity extends BaseActivity<OrderManagerPresenter, IO
                     intent.putExtra(Order.TAG, order);
                     startActivityForResult(intent, 11);
                 }else {
-
+                    Intent intent = new Intent(OrderManagerActivity.this, OrderDetailActivity.class);
+                    intent.putExtra(Order.TAG, order);
+                    startActivity(intent);
                 }
             }
         });

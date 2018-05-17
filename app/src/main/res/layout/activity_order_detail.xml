@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGrayE"
-    tools:context="com.sun.fastdelivery.view.PayOrderActivity">
+    android:orientation="vertical"
+    tools:context="com.sun.fastdelivery.view.OrderDetailActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -176,6 +176,39 @@
             </LinearLayout>
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="备注信息"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/tvRemark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/tvPayWay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="支付方式：--"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@color/white"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
                 android:id="@+id/tvTools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -188,109 +221,14 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"/>
 
-            <TextView
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvArrivePlaces"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="支付方式"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@color/white"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"/>
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+            </android.support.v7.widget.RecyclerView>
 
-            <RadioGroup
-                android:id="@+id/rgPayWay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="@dimen/sizeOfLagerMargin">
-                <RadioButton
-                    android:id="@+id/rbAliPay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="支付宝"
-                    android:drawableLeft="@drawable/alipay"
-                    android:drawablePadding="@dimen/sizeOfLagerMargin"
-                    android:layout_margin="@dimen/sizeOfLittleMargin"
-                    android:checked="true"
-                    />
-                <RadioButton
-                    android:id="@+id/rbWxPay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="微信支付"
-                    android:drawableLeft="@drawable/wxpay"
-                    android:drawablePadding="@dimen/sizeOfLagerMargin"
-                    android:layout_margin="@dimen/sizeOfLittleMargin"
-                    />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/tvCancelOrder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/sizeOfLagerMargin"
-                android:paddingTop="@dimen/sizeOfMiddleMargin"
-                android:paddingBottom="@dimen/sizeOfMiddleMargin"
-                android:drawableLeft="@drawable/icon_cancel"
-                android:gravity="center_vertical"
-                android:background="@color/white"
-                android:text="取消订单"
-                android:drawablePadding="@dimen/sizeOfLagerMargin"
-                android:layout_marginBottom="@dimen/sizeOfMiddleMargin"/>
         </LinearLayout>
     </ScrollView>
-
-    <LinearLayout
-        android:id="@+id/bottomBar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bottom_bar_height"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:layout_weight="1">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="配送费"
-                    android:drawableLeft="@drawable/money"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:padding="5dp"
-                    android:layout_marginLeft="10dp"/>
-                <TextView
-                    android:id="@+id/tvMoney"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/holo_red_dark"
-                    android:text="0 元"/>
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tvPayOrder"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="支付订单"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/black"
-            android:gravity="center"/>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

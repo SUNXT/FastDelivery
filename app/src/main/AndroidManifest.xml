@@ -66,7 +66,8 @@
         <activity
             android:name=".view.OrderManagerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.OrderDetailActivity"></activity>
+        <activity android:name=".view.OrderDetailActivity" />
+        <activity android:name=".view.RiderRegisterActivity"></activity>
     </application>
 
 </manifest>

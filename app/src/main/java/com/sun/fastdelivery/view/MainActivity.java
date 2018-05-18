@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
@@ -38,22 +37,12 @@ import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.sun.fastdelivery.R;
-import com.sun.fastdelivery.bean.Order;
-import com.sun.fastdelivery.bean.User;
-import com.sun.fastdelivery.model.OrderModel;
-import com.sun.fastdelivery.model.callback.OnModelCallback;
 import com.sun.fastdelivery.utils.ToastUtils;
 import com.sun.fastdelivery.utils.UserSpUtils;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.sun.fastdelivery.R.id.start;
-import static com.sun.fastdelivery.R.id.tvPhone;
-import static com.sun.fastdelivery.utils.UserSpUtils.getUser;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AMapLocationListener, LocationSource, AMap.OnMapClickListener, AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener {
@@ -105,6 +94,8 @@ public class MainActivity extends AppCompatActivity
 
     //注销对话框
     private AlertDialog.Builder mLogoutDialog;
+    private AlertDialog.Builder mAboutDialog;//关于对话框
+    private AlertDialog.Builder mRuleDialog;//配送规则对话框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,13 +242,22 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_order) {
             Intent intent = new Intent(this, OrderManagerActivity.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_bike) {
 
         } else if (id == R.id.nav_rule) {
-
+            if (mRuleDialog == null){
+                mRuleDialog = new AlertDialog.Builder(this)
+                        .setMessage("配送规则为 每公斤每公里1元，配送费与重量和距离成正比。")
+                        .setPositiveButton("明白",null);
+            }
+            mRuleDialog.show();
         } else if (id == R.id.nav_about) {
-
+            if (mAboutDialog == null){
+                mAboutDialog = new AlertDialog.Builder(this)
+                        .setMessage("快派 APP 1.0")
+                        .setPositiveButton("确定", null);
+            }
+            mAboutDialog.show();
         } else if (id == R.id.nav_logout) {
             if (mLogoutDialog == null){
                 mLogoutDialog = new AlertDialog.Builder(this)

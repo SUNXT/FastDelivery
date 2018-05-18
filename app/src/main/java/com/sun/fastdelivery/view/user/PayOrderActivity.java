@@ -1,11 +1,10 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.user;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RadioGroup;

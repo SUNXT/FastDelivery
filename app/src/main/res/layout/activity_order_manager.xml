@@ -4,7 +4,7 @@
     android:id="@+id/activity_order_manager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sun.fastdelivery.view.OrderManagerActivity"
+    tools:context="com.sun.fastdelivery.view.user.OrderManagerActivity"
     android:orientation="vertical"
     android:background="@color/colorGrayE">
 

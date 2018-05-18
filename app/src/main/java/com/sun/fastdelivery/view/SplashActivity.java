@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.utils.UserSpUtils;
+import com.sun.fastdelivery.view.user.LoginActivity;
+import com.sun.fastdelivery.view.user.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.user;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -46,8 +44,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class CompleteLocationInfoActivity extends AppCompatActivity implements LocationSource, AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener, AMapLocationListener {
 

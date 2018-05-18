@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sun.fastdelivery.view.CreateOrderActivity"
+    tools:context="com.sun.fastdelivery.view.user.CreateOrderActivity"
     android:background="@color/colorGrayE">
     
     <RelativeLayout

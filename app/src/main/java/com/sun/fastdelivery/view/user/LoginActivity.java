@@ -1,12 +1,10 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.user;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
 import android.view.KeyEvent;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mingle.widget.ShapeLoadingDialog;

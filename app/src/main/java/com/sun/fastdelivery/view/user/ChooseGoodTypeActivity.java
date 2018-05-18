@@ -1,4 +1,4 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.user;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

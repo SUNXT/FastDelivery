@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sun.fastdelivery.view.LoginActivity"
+    tools:context="com.sun.fastdelivery.view.user.LoginActivity"
     android:background="@color/white">
     <ImageView
         android:layout_width="60dp"

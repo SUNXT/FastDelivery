@@ -43,31 +43,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.CreateOrderActivity"
+            android:name=".view.user.CreateOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ChooseCityActivity"
+            android:name=".view.user.ChooseCityActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.CompleteLocationInfoActivity"
+            android:name=".view.user.CompleteLocationInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.ChooseGoodTypeActivity"
+            android:name=".view.user.ChooseGoodTypeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.LoginActivity"
+            android:name=".view.user.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.user.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.PayOrderActivity"
+            android:name=".view.user.PayOrderActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.OrderManagerActivity"
+            android:name=".view.user.OrderManagerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.OrderDetailActivity" />
-        <activity android:name=".view.RiderRegisterActivity"></activity>
+        <activity android:name=".view.user.OrderDetailActivity" />
+        <activity android:name=".view.rider.RiderRegisterActivity" />
+        <activity android:name=".view.rider.RiderLoginActivity"></activity>
     </application>
 
 </manifest>

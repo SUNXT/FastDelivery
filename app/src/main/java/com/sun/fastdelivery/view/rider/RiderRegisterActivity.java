@@ -1,4 +1,4 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.rider;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,4 +12,5 @@ public class RiderRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_register);
     }
+
 }

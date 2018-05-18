@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sun.fastdelivery.view.rider.RiderRegisterActivity"
+    tools:context="com.sun.fastdelivery.view.rider.RiderLoginActivity"
     android:background="@color/white">
 
     <ImageView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="骑手注册"
+        android:text="骑手登录"
         android:layout_gravity="center_horizontal"/>
     <com.sun.xuedian.multiedittext.MultiEditText
         android:id="@+id/etPhone"
@@ -72,18 +72,26 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="50dp"
-        android:text="注册"
+        android:text="登录"
         android:textSize="16sp"
         android:textColor="@color/white"
         android:background="@drawable/blue_corners"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         />
+
+    <TextView
+        android:id="@+id/tvGoRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="没有账号？注册一个"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
 </LinearLayout>

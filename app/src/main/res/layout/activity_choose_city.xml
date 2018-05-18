@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGrayE"
-    tools:context="com.sun.fastdelivery.view.ChooseCityActivity">
+    tools:context="com.sun.fastdelivery.view.user.ChooseCityActivity">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_bar_height"

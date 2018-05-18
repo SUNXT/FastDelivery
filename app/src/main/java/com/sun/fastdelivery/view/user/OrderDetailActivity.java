@@ -1,8 +1,8 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.user;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,8 +19,6 @@ import com.sun.fastdelivery.utils.JsonUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.loc.g.s;
 
 public class OrderDetailActivity extends AppCompatActivity {
 

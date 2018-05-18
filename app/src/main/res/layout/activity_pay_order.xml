@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGrayE"
-    tools:context="com.sun.fastdelivery.view.PayOrderActivity">
+    tools:context="com.sun.fastdelivery.view.user.PayOrderActivity">
 
     <include
         android:id="@+id/toolbar"

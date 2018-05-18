@@ -6,6 +6,11 @@ package com.sun.fastdelivery.bean;
  */
 
 public class RiderUser extends User{
+
+    public RiderUser(Long userId, String userPhone, String allocatedToken) {
+        super(userId, userPhone, allocatedToken);
+    }
+
     private double userWalletAmount;//骑手的钱包
 
     public double getUserWalletAmount() {

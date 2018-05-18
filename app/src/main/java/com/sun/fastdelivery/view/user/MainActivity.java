@@ -1,4 +1,4 @@
-package com.sun.fastdelivery.view;
+package com.sun.fastdelivery.view.user;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,6 +39,7 @@ import com.amap.api.services.geocoder.RegeocodeResult;
 import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.utils.ToastUtils;
 import com.sun.fastdelivery.utils.UserSpUtils;
+import com.sun.fastdelivery.view.rider.RiderRegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -243,7 +244,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, OrderManagerActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bike) {
-
+            Intent intent = new Intent(this, RiderRegisterActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_rule) {
             if (mRuleDialog == null){
                 mRuleDialog = new AlertDialog.Builder(this)

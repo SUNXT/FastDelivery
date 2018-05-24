@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.mingle.widget.ShapeLoadingDialog;
 import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.bean.User;
+import com.sun.fastdelivery.model.UserModel;
 import com.sun.fastdelivery.presenter.LoginPresenter;
 import com.sun.fastdelivery.utils.ToastUtils;
 import com.sun.fastdelivery.utils.UserSpUtils;
@@ -21,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> implements ILoginView {
+public class UserLoginActivity extends BaseActivity<LoginPresenter, ILoginView> implements ILoginView {
 
     @BindView(R.id.etPhone)
     MultiEditText mEtPhone;
@@ -71,6 +73,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> impl
         mLoadingView = new ShapeLoadingDialog(this);
         mLoadingView.setLoadingText("登录中...");
         mLoadingView.setCanceledOnTouchOutside(false);
+
     }
 
     @Override
@@ -91,7 +94,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> impl
 
     @Override
     protected LoginPresenter createPresenter() {
-        return new LoginPresenter(this);
+        return new LoginPresenter(this, UserModel.TYPE_USER);
     }
 
     @Override
@@ -117,7 +120,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter, ILoginView> impl
         //将用户信息保存到本地中
         UserSpUtils.saveUser(this, user);
         //跳转到主界面中
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, UserMainActivity.class);
         startActivity(intent);
         finish();
     }

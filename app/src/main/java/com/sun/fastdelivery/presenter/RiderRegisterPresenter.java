@@ -4,11 +4,12 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.sun.fastdelivery.bean.RiderUser;
 import com.sun.fastdelivery.bean.User;
 import com.sun.fastdelivery.model.UserModel;
 import com.sun.fastdelivery.model.callback.OnModelCallback;
 import com.sun.fastdelivery.utils.MyTextUtils;
-import com.sun.fastdelivery.view.base.ILoginView;
+import com.sun.fastdelivery.view.base.IRiderRegisterView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,21 +17,18 @@ import org.json.JSONObject;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
 
-
 /**
- * Created by sunxuedian on 2018/4/30.
+ * Created by sunxuedian on 2018/5/25.
  */
 
-public class LoginPresenter extends BasePresenter<ILoginView> {
+public class RiderRegisterPresenter extends BasePresenter<IRiderRegisterView> {
 
     private String TAG = getClass().getSimpleName();
     private EventHandler mEventHandler;
     private String mPhone;
     private boolean mCanSendCode = true;
-    private int mUserType;
 
-    public LoginPresenter(final Activity context, int userType){
-        mUserType = userType;
+    public RiderRegisterPresenter(final Activity context) {
         //处理SMSSDK 短信验证码的回调
         mEventHandler = new EventHandler(){
             @Override
@@ -49,7 +47,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
                             //回调完成
                             if (event == SMSSDK.EVENT_SUBMIT_VERIFICATION_CODE) {
                                 //提交验证码成功
-                                loginToService();
+                                registerRiderUser();
                             }else if (event == SMSSDK.EVENT_GET_VERIFICATION_CODE){
                                 //获取验证码成功
                                 getView().onSendCodeSuccess();
@@ -110,7 +108,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     /**
      * 提供外部调用的登录操作
      */
-    public void onLogin(){
+    public void onRiderUserRegister(){
         if (!isViewAttached()){
             Log.e(TAG, "the is not attached");
             return;
@@ -134,17 +132,15 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     }
 
     /**
-     * 请求服务器进行
+     * 请求注册骑手
      */
-    private void loginToService(){
+    private void registerRiderUser() {
         getView().showLoading();
-
-        UserModel.getInstance().login(mPhone, mUserType, new OnModelCallback<User>() {
-
+        UserModel.getInstance().riderUserRegister(mPhone, new OnModelCallback<String>() {
             @Override
-            public void onSuccess(User data) {
+            public void onSuccess(String data) {
                 getView().stopLoading();
-                getView().onLoginSuccess(data);
+                getView().onRegisterSuccess();
             }
 
             @Override
@@ -154,4 +150,27 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
             }
         });
     }
+
+    /**
+     * 注册成功，需要进行登录操作
+     */
+    public void onLogin(){
+
+        getView().showLoading();
+        UserModel.getInstance().riderUserLogin(mPhone, new OnModelCallback<User>() {
+            @Override
+            public void onSuccess(User data) {
+                getView().stopLoading();
+                RiderUser riderUser = new RiderUser(data.getUserId(), data.getUserPhone(), data.getAllocatedToken());
+                getView().onLoginSuccess(riderUser);
+            }
+
+            @Override
+            public void onFailure(String code, String msg) {
+                getView().stopLoading();
+                getView().onFailure(msg);
+            }
+        });
+    }
+
 }

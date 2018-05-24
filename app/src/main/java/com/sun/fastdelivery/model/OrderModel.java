@@ -5,6 +5,7 @@ import android.util.Log;
 import com.sun.fastdelivery.bean.CreateOrderDto;
 import com.sun.fastdelivery.bean.Order;
 import com.sun.fastdelivery.bean.ResponseBean;
+import com.sun.fastdelivery.bean.RiderUser;
 import com.sun.fastdelivery.bean.User;
 import com.sun.fastdelivery.model.callback.OnModelCallback;
 import com.sun.fastdelivery.utils.JsonUtils;
@@ -67,10 +68,7 @@ public class OrderModel {
      */
     public void payOrder(User user, Long orderId, double money, String payWay, final OnModelCallback<String> callback){
         Map<String, Object> params = new HashMap<>();
-        Map<String, String> token = new HashMap<>();
-        token.put("tokenValue", user.getAllocatedToken());
-        token.put("userPhone", user.getUserPhone());
-        params.put("token", token);
+        params.put("token", user.getToken());
         params.put("userId", user.getUserId());
         params.put("orderId", orderId);
         params.put("payAmount", money);
@@ -95,10 +93,7 @@ public class OrderModel {
      */
     public void cancelOrder(User user, Long orderId, final OnModelCallback callback){
         Map<String, Object> params = new HashMap<>();
-        Map<String, String> token = new HashMap<>();
-        token.put("tokenValue", user.getAllocatedToken());
-        token.put("userPhone", user.getUserPhone());
-        params.put("token", token);
+        params.put("token", user.getToken());
         params.put("orderId", orderId);
         params.put("userId", user.getUserId());
         Log.e(TAG, params.toString());
@@ -119,12 +114,39 @@ public class OrderModel {
      * @param user
      * @param callback
      */
-    public void getAllOrders(User user, final OnModelCallback<List<Order>> callback){
+    public void getAllOrdersByUser(User user, final OnModelCallback<List<Order>> callback){
+        getOrders(user, user.getUserId(), -1, -2, callback);
+    }
+
+    /**
+     * 获取骑手接的订单
+     * @param riderUser
+     * @param callback
+     */
+    public void getAllOrdersByRiderUser(RiderUser riderUser, final OnModelCallback<List<Order>> callback){
+        getOrders(riderUser, -1, riderUser.getUserId(), -2, callback);
+    }
+
+
+    /**
+     * 通过以下调教筛选订单
+     * @param user
+     * @param userId
+     * @param riderUserId
+     * @param status
+     */
+    private void getOrders(User user, long userId, long riderUserId, int status, final OnModelCallback<List<Order>> callback){
         Map<String, Object> params = new HashMap<>();
-        Map<String, String> token = new HashMap<>();
-        token.put("tokenValue", user.getAllocatedToken());
-        token.put("userPhone", user.getUserPhone());
-        params.put("token", token);
+        params.put("token", user.getToken());
+        if (userId != -1){
+            params.put("userId", userId);
+        }
+        if (riderUserId != -1){
+            params.put("rider", riderUserId);
+        }
+        if (status != -2){
+            params.put("status", status);
+        }
         OkHttpUtils.executeRequest(UrlParamsUtils.URL_QUERY_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
             @Override
             public void onSuccess(ResponseBean responseBean) {
@@ -136,5 +158,30 @@ public class OrderModel {
             }
         });
     }
+
+    /**
+     * 骑手接单
+     * @param riderUser
+     * @param orderId
+     * @param onModelCallback
+     */
+    public void takeOrder(RiderUser riderUser, long orderId, final OnModelCallback<String> onModelCallback){
+        Map<String, Object> params = new HashMap<>();
+        params.put("token", riderUser.getToken());
+        params.put("riderId", riderUser.getUserId());
+        params.put("orderId", orderId);
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_TAKE_ORDER, params, onModelCallback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (ResponseBean.isSuccessCode(responseBean.getCode())){
+                    onModelCallback.onSuccess("接单成功");
+                }else {
+                    onModelCallback.onFailure(responseBean.getCode(), responseBean.getMessage());
+                }
+            }
+        });
+    }
+
+
 
 }

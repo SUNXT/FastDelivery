@@ -55,10 +55,10 @@
             android:name=".view.user.ChooseGoodTypeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.user.LoginActivity"
+            android:name=".view.user.UserLoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.user.MainActivity"
+            android:name=".view.user.UserMainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.user.PayOrderActivity"
@@ -68,7 +68,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".view.user.OrderDetailActivity" />
         <activity android:name=".view.rider.RiderRegisterActivity" />
-        <activity android:name=".view.rider.RiderLoginActivity"></activity>
+        <activity android:name=".view.rider.RiderLoginActivity" />
+        <activity android:name=".view.rider.RiderUserMainActivity"></activity>
     </application>
 
 </manifest>

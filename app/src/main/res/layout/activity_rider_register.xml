@@ -9,6 +9,7 @@
     android:background="@color/white">
 
     <ImageView
+        android:id="@+id/ivBack"
         android:layout_width="30dp"
         android:layout_height="@dimen/back_icon_size"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -20,7 +21,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/app_icon_round"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,5 +86,14 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         />
+
+    <TextView
+        android:id="@+id/tvGoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="已有账号，直接登录"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"/>
 
 </LinearLayout>

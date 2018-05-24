@@ -45,7 +45,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity
+public class UserMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, AMapLocationListener, LocationSource, AMap.OnMapClickListener, AMap.OnCameraChangeListener, GeocodeSearch.OnGeocodeSearchListener {
 
     @BindView(R.id.mapView)
@@ -268,8 +268,8 @@ public class MainActivity extends AppCompatActivity
                         .setPositiveButton("注销", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                UserSpUtils.logout(MainActivity.this);
-                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                UserSpUtils.logout(UserMainActivity.this);
+                                Intent intent = new Intent(UserMainActivity.this, UserLoginActivity.class);
                                 startActivity(intent);
                                 finish();
                             }

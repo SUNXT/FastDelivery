@@ -1,5 +1,8 @@
 package com.sun.fastdelivery.bean;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by sunxuedian on 2018/4/30.
  */
@@ -41,5 +44,12 @@ public class User {
 
     public void setAllocatedToken(String allocatedToken) {
         this.allocatedToken = allocatedToken;
+    }
+
+    public Map<String, Object> getToken(){
+        Map<String,Object> token = new HashMap<>();
+        token.put("tokenValue", getAllocatedToken());
+        token.put("userPhone", getUserPhone());
+        return token;
     }
 }

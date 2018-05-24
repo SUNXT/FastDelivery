@@ -7,8 +7,8 @@ import android.os.Bundle;
 
 import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.utils.UserSpUtils;
-import com.sun.fastdelivery.view.user.LoginActivity;
-import com.sun.fastdelivery.view.user.MainActivity;
+import com.sun.fastdelivery.view.user.UserLoginActivity;
+import com.sun.fastdelivery.view.user.UserMainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -22,9 +22,9 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent();
                 if (UserSpUtils.isUserLogin(SplashActivity.this)){
-                    intent.setClass(SplashActivity.this, MainActivity.class);
+                    intent.setClass(SplashActivity.this, UserMainActivity.class);
                 }else {
-                    intent.setClass(SplashActivity.this, LoginActivity.class);
+                    intent.setClass(SplashActivity.this, UserLoginActivity.class);
                 }
                 startActivity(intent);
                 finish();

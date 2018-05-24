@@ -24,7 +24,7 @@ public class OrderManagerPresenter extends BasePresenter<IOrderManagerView> {
         }
 
         getView().showLoading();
-        OrderModel.getInstance().getAllOrders(getView().getUser(), new OnModelCallback<List<Order>>() {
+        OrderModel.getInstance().getAllOrdersByUser(getView().getUser(), new OnModelCallback<List<Order>>() {
             @Override
             public void onSuccess(List<Order> data) {
                 getView().stopLoading();

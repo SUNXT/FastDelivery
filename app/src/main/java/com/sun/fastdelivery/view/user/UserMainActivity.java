@@ -40,6 +40,7 @@ import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.utils.ToastUtils;
 import com.sun.fastdelivery.utils.UserSpUtils;
 import com.sun.fastdelivery.view.rider.RiderRegisterActivity;
+import com.sun.fastdelivery.view.rider.RiderUserMainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -226,7 +227,7 @@ public class UserMainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             // TODO: 2018/5/2
-            Intent intent = new Intent(this, PayOrderActivity.class);
+            Intent intent = new Intent(this, RiderUserMainActivity.class);
             startActivity(intent);
             return true;
         }

@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.sun.fastdelivery.view.rider.RiderUserMainActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <FrameLayout
+        android:id="@+id/mainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomBar">
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bottom_bar_height"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:background="@color/colorGrayE">
+
+        <TextView
+            android:id="@+id/tvHome"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="首页"
+            android:drawableTop="@mipmap/home_selected"
+            android:paddingTop="5dp"
+            android:textColor="@drawable/rider_bottom_bar_text_color_selector"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tvMine"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="个人中心"
+            android:drawableTop="@drawable/me"
+            android:textColor="@drawable/rider_bottom_bar_text_color_selector"
+            android:paddingTop="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="12sp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -26,9 +26,22 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="首页"
-            android:drawableTop="@mipmap/home_selected"
+            android:drawableTop="@drawable/bottom_bar_home_icon_selector"
             android:paddingTop="5dp"
             android:textColor="@drawable/rider_bottom_bar_text_color_selector"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:id="@+id/tvOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="订单"
+            android:drawableTop="@drawable/bottom_bar_order_icon_selector"
+            android:textColor="@drawable/rider_bottom_bar_text_color_selector"
+            android:paddingTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:textSize="12sp"/>
@@ -38,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="个人中心"
-            android:drawableTop="@drawable/me"
+            android:drawableTop="@drawable/bottom_bar_mine_icon_selector"
             android:textColor="@drawable/rider_bottom_bar_text_color_selector"
             android:paddingTop="5dp"
             android:layout_weight="1"

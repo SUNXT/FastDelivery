@@ -26,7 +26,9 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
-        applicationId "com.sun.fastdelivery"
+        // todo: 切换APP的入口
+//        applicationId "com.sun.fastdelivery"//快派客户端
+        applicationId "com.sun.fastdelivery.rider"//骑手客户端
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

@@ -5,10 +5,10 @@
     android:background="@drawable/white_gary_press_selector">
 
     <TextView
-        android:id="@+id/tvCreateTime"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3月16日"
+        android:text="3月16日-鲜花"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_toRightOf="@+id/icon"
-            android:layout_toLeftOf="@+id/tvStatus"
+            android:layout_toLeftOf="@+id/tvArrivePlace"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_centerVertical="true">
@@ -60,14 +60,16 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvStatus"
+            android:id="@+id/tvArrivePlace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="已完成"
-            android:drawableRight="@drawable/go"
+            android:text="到达站点1"
             android:drawablePadding="10dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:drawableRight="@drawable/go"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             />
     </RelativeLayout>
@@ -77,5 +79,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/color_cut_line"
         android:scaleType="fitXY"/>
+
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.sun.fastdelivery.view.base;
 
 import com.sun.fastdelivery.bean.Order;
+import com.sun.fastdelivery.bean.RiderUser;
 import com.sun.fastdelivery.bean.User;
 
 import java.util.List;

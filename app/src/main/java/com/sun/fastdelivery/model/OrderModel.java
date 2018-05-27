@@ -2,6 +2,7 @@ package com.sun.fastdelivery.model;
 
 import android.util.Log;
 
+import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.bean.CreateOrderDto;
 import com.sun.fastdelivery.bean.Order;
 import com.sun.fastdelivery.bean.ResponseBean;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class OrderModel {
 
     private String TAG = "OrderModel";
+
+    private static int ORDER_PARAMS_NONE = -11;//不需要的参数
 
     private static OrderModel mInstance;
 
@@ -110,12 +113,12 @@ public class OrderModel {
     }
 
     /**
-     * 获取所有订单列表
+     * 获取用户的所有订单列表
      * @param user
      * @param callback
      */
     public void getAllOrdersByUser(User user, final OnModelCallback<List<Order>> callback){
-        getOrders(user, user.getUserId(), -1, -2, callback);
+        getOrders(user, user.getUserId(), ORDER_PARAMS_NONE, ORDER_PARAMS_NONE, callback);
     }
 
     /**
@@ -124,9 +127,17 @@ public class OrderModel {
      * @param callback
      */
     public void getAllOrdersByRiderUser(RiderUser riderUser, final OnModelCallback<List<Order>> callback){
-        getOrders(riderUser, -1, riderUser.getUserId(), -2, callback);
+        getOrders(riderUser, ORDER_PARAMS_NONE, riderUser.getUserId(), ORDER_PARAMS_NONE, callback);
     }
 
+    /**
+     * 获取所有可以接单的订单 订单状态是已支付的
+     * @param user
+     * @param callback
+     */
+    public void getAllOrdersCanTake(User user, OnModelCallback<List<Order>> callback){
+        getOrders(user, ORDER_PARAMS_NONE, ORDER_PARAMS_NONE, Order.STATUS_PAY, callback);
+    }
 
     /**
      * 通过以下调教筛选订单
@@ -138,13 +149,13 @@ public class OrderModel {
     private void getOrders(User user, long userId, long riderUserId, int status, final OnModelCallback<List<Order>> callback){
         Map<String, Object> params = new HashMap<>();
         params.put("token", user.getToken());
-        if (userId != -1){
+        if (userId != ORDER_PARAMS_NONE){
             params.put("userId", userId);
         }
-        if (riderUserId != -1){
+        if (riderUserId != ORDER_PARAMS_NONE){
             params.put("rider", riderUserId);
         }
-        if (status != -2){
+        if (status != ORDER_PARAMS_NONE){
             params.put("status", status);
         }
         OkHttpUtils.executeRequest(UrlParamsUtils.URL_QUERY_ORDER, params, callback, new OkHttpUtils.OnSuccessCallBack() {
@@ -182,6 +193,28 @@ public class OrderModel {
         });
     }
 
-
+    /**
+     * 更新配送地点
+     * @param riderUser
+     * @param order
+     * @param onModelCallback
+     */
+    public void updateOrderShipping(RiderUser riderUser, Order order, final OnModelCallback<String> onModelCallback){
+        Map<String, Object> params = new HashMap<>();
+        params.put("token", riderUser.getToken());
+        params.put("riderId", riderUser.getUserId());
+        params.put("orderId", order.getOrderId());
+        params.put("arrivePlace", order.getOrderShippingInfo().getArrivePlace());
+        OkHttpUtils.executeRequest(UrlParamsUtils.URL_UPDATE_ORDER_SHIPPING, params, onModelCallback, new OkHttpUtils.OnSuccessCallBack() {
+            @Override
+            public void onSuccess(ResponseBean responseBean) {
+                if (ResponseBean.isSuccessCode(responseBean.getCode())){
+                    onModelCallback.onSuccess("更新成功");
+                }else {
+                    onModelCallback.onFailure(responseBean.getCode(), responseBean.getMessage());
+                }
+            }
+        });
+    }
 
 }

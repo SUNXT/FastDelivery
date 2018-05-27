@@ -133,5 +133,14 @@ public class UserSpUtils {
         }
     }
 
+    /**
+     * 判断用户是否处于登录状态
+     * @param context
+     * @return
+     */
+    public static boolean isRiderUserLogin(Context context){
+        RiderUser user = getRiderUser(context);
+        return user != null &&!TextUtils.isEmpty(user.getAllocatedToken());
+    }
 
 }

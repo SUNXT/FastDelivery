@@ -103,7 +103,6 @@ public class UserModel {
     }
 
     /**
-     * todo 暂时不使用
      * 查询骑手的信息
      * @param user
      * @param onModelCallback
@@ -120,7 +119,7 @@ public class UserModel {
                 if (ResponseBean.isSuccessCode(responseBean.getCode())){
                     onModelCallback.onSuccess(JsonUtils.fromJson(RiderUser.class, responseBean.getContent()));
                 }else {
-
+                    onModelCallback.onFailure(responseBean.getCode(), responseBean.getMessage());
                 }
             }
         });

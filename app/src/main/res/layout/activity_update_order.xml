@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrayE"
+    tools:context="com.sun.fastdelivery.view.rider.UpdateOrderActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/top_bar"/>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/color_cut_line"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="寄件信息"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/tvSendLocationInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:maxLines="2"
+                android:layout_marginTop="1dp"
+                />
+
+            <TextView
+                android:id="@+id/tvSendContactInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="联系人："
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/color_cut_line"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="收件信息"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/tvReceiveLocationInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:maxLines="2"
+                android:layout_marginTop="1dp"
+                />
+
+            <TextView
+                android:id="@+id/tvReceiveContactInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="联系人："
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="物品信息"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:layout_marginTop="1dp">
+
+                <ImageView
+                    android:id="@+id/ivType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cake"
+                    android:background="@drawable/blue_oval_border"
+                    android:padding="10dp"
+                    android:layout_margin="5dp"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="类型：--"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/tvGoodWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="重量：--"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="配送方式：--"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@color/white"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tvArrivePlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="目前配送到 站点0，下个站点为1"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@color/white"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/tvMoney"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="@color/white"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"/>
+
+            <Button
+                android:id="@+id/btnUpdateOrder"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="50dp"
+                android:text="更新订单"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@drawable/blue_corners"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

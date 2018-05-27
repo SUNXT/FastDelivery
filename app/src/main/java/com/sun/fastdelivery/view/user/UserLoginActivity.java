@@ -74,6 +74,10 @@ public class UserLoginActivity extends BaseActivity<LoginPresenter, ILoginView> 
         mLoadingView.setLoadingText("登录中...");
         mLoadingView.setCanceledOnTouchOutside(false);
 
+        User user = UserSpUtils.getUser(this);
+        if (user != null && !TextUtils.isEmpty(user.getUserPhone())){
+            mEtPhone.setText(user.getUserPhone());
+        }
     }
 
     @Override

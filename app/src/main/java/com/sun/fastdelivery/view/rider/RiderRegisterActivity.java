@@ -35,7 +35,7 @@ public class RiderRegisterActivity extends BaseActivity<RiderRegisterPresenter, 
 
     @OnClick(R.id.ivBack)
     public void goBack(){
-        finish();
+        goLogin();
     }
 
     /**
@@ -96,6 +96,11 @@ public class RiderRegisterActivity extends BaseActivity<RiderRegisterPresenter, 
         mLoadingView = new ShapeLoadingDialog(this);
         mLoadingView.setLoadingText("加载中...");
         mLoadingView.setCanceledOnTouchOutside(false);
+    }
+
+    @Override
+    public void onBackPressed() {
+        goLogin();
     }
 
     @Override

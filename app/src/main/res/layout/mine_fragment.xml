@@ -1,9 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/refreshLayout">
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorGrayE">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/top_bar_height"
+            android:text="个人中心"
+            android:gravity="center"
+            android:background="@color/white"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="个人中心"/>
-</RelativeLayout>
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/app_icon_round"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="账号"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:background="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/black"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="钱包"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:background="@color/white"
+            android:layout_marginTop="1dp"
+            />
+
+        <TextView
+            android:id="@+id/tvMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/red"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/activity_horizontal_margin"
+            android:gravity="center_vertical"
+            android:padding="10dp"/>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/red_corners"
+            android:textColor="@color/white"
+            android:text="切换账号"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            />
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

@@ -66,10 +66,22 @@
         <activity
             android:name=".view.user.OrderManagerActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.user.OrderDetailActivity" />
-        <activity android:name=".view.rider.RiderRegisterActivity" />
-        <activity android:name=".view.rider.RiderLoginActivity" />
-        <activity android:name=".view.rider.RiderUserMainActivity"></activity>
+        <activity
+            android:name=".view.user.OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.rider.RiderRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.rider.RiderLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.rider.RiderUserMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.rider.TakeOrderActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.rider.UpdateOrderActivity"></activity>
     </application>
 
 </manifest>

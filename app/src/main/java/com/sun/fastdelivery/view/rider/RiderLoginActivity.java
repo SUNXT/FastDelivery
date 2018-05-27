@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.mingle.widget.ShapeLoadingDialog;
@@ -32,11 +33,6 @@ public class RiderLoginActivity extends BaseActivity<LoginPresenter, ILoginView>
     MultiEditText mEtCode;
     @BindView(R.id.tvSendCode)
     TextView mTvSendCode;
-
-    @OnClick(R.id.ivBack)
-    public void goBack(){
-        finish();
-    }
 
     @OnClick(R.id.tvSendCode)
     public void sendCode(){
@@ -74,6 +70,7 @@ public class RiderLoginActivity extends BaseActivity<LoginPresenter, ILoginView>
         }
     };
 
+    private long mLastBackClickTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +80,10 @@ public class RiderLoginActivity extends BaseActivity<LoginPresenter, ILoginView>
         mLoadingView = new ShapeLoadingDialog(this);
         mLoadingView.setLoadingText("登录中...");
         mLoadingView.setCanceledOnTouchOutside(false);
+        RiderUser riderUser = UserSpUtils.getRiderUser(this);
+        if (riderUser != null && !TextUtils.isEmpty(riderUser.getUserPhone())){
+            mEtPhone.setText(riderUser.getUserPhone());
+        }
     }
 
     @Override
@@ -132,6 +133,16 @@ public class RiderLoginActivity extends BaseActivity<LoginPresenter, ILoginView>
     @Override
     public void onFailure(String msg) {
         ToastUtils.showToast(msg);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (System.currentTimeMillis() - mLastBackClickTime < 2000){
+            super.onBackPressed();
+        }else {
+            mLastBackClickTime = System.currentTimeMillis();
+            ToastUtils.showToast("再按一次，退出程序！");
+        }
     }
 
     @Override

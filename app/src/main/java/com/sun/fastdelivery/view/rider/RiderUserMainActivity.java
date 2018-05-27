@@ -50,6 +50,8 @@ public class RiderUserMainActivity extends AppCompatActivity{
         }
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.hide(mLastShowFragment);
+        ft.commit();
+        ft = getFragmentManager().beginTransaction();
         switch (view.getId()){
             case R.id.tvHome:
                 mLastShowFragment = mHomeFragment;

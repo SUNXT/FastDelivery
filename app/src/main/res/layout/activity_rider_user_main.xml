@@ -19,7 +19,7 @@
         android:layout_height="@dimen/bottom_bar_height"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:background="@color/colorGrayE">
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/tvHome"

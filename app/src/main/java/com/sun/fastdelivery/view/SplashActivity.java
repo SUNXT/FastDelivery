@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.sun.fastdelivery.R;
 import com.sun.fastdelivery.utils.UserSpUtils;
+import com.sun.fastdelivery.view.rider.RiderLoginActivity;
 import com.sun.fastdelivery.view.rider.RiderUserMainActivity;
 import com.sun.fastdelivery.view.user.UserLoginActivity;
 import com.sun.fastdelivery.view.user.UserMainActivity;
@@ -15,7 +16,7 @@ import com.sun.fastdelivery.view.user.UserMainActivity;
 public class SplashActivity extends AppCompatActivity {
 
     // TODO: 2018/5/26 不同端APP的切换入口
-    private boolean isRider = true;//开关，如果是骑手端，需要将其设置为true，同时将applicationId改为骑手端的
+    private boolean isRider = false;//开关，如果是骑手端，需要将其设置为true，同时将applicationId改为骑手端的
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +34,13 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent();
                 if (isRider){
-                    //如果是骑手端的话，直接打开骑手端的主页
-                    intent.setClass(SplashActivity.this, RiderUserMainActivity.class);
+                    //如果是骑手端的话，判断是否已经登录，如果没有登录，跳转到登录界面
+                    if (UserSpUtils.isRiderUserLogin(SplashActivity.this)){
+                        intent.setClass(SplashActivity.this, RiderUserMainActivity.class);
+                    }else {
+                        intent.setClass(SplashActivity.this, RiderLoginActivity.class);
+                    }
+
                 }else {
                     //用户端，判断用户是否已经登录，没有登录的话，需要调整到登录页面
                     if (UserSpUtils.isUserLogin(SplashActivity.this)){

@@ -20,6 +20,7 @@ public class UrlParamsUtils {
     public static String URL_RIDER_USER_REGISTER = IP + "/user/registerRider";//骑手注册
     public static String URL_QUERY_RIDER_USER_INFO = IP + "/user/queryUserInfo";//查询骑手的信息
     public static String URL_TAKE_ORDER = IP + "/order/takeOrder";//骑手接单
+    public static String URL_UPDATE_ORDER_SHIPPING = IP + "/order/updateShipping";//更新订单物流信息
 
 
 }

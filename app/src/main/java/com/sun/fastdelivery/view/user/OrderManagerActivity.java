@@ -57,7 +57,7 @@ public class OrderManagerActivity extends BaseActivity<OrderManagerPresenter, IO
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 11 && resultCode == RESULT_OK){
-            mPresenter.getOrderList();//有更新
+            mPresenter.getOrdersByUser();//有更新
         }
     }
 
@@ -70,13 +70,13 @@ public class OrderManagerActivity extends BaseActivity<OrderManagerPresenter, IO
             @Override
             public void run() {
                 mRefreshLayout.setRefreshing(true);
-                mPresenter.getOrderList();
+                mPresenter.getOrdersByUser();
             }
         });
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mPresenter.getOrderList();
+                mPresenter.getOrdersByUser();
             }
         });
         //解决recycleView和refreshLayout的滑动冲突

@@ -3,6 +3,7 @@ package com.sun.fastdelivery.view.user;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.NavigationView;
@@ -102,6 +103,7 @@ public class UserMainActivity extends AppCompatActivity
     private AlertDialog.Builder mAboutDialog;//关于对话框
     private AlertDialog.Builder mRuleDialog;//配送规则对话框
     private AlertDialog.Builder mInstallRiderDialog;//提示安装骑手端对话框
+    private AlertDialog.Builder mContactUsDialog;//联系客服的对话框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -313,6 +315,21 @@ public class UserMainActivity extends AppCompatActivity
                         .setNegativeButton("取消", null);
             }
             mLogoutDialog.show();
+        } else if (id == R.id.nav_contact_us){
+            if (mContactUsDialog == null){
+                mContactUsDialog = new AlertDialog.Builder(this)
+                        .setCancelable(true)
+                        .setMessage("4009600365")
+                        .setPositiveButton("呼叫", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:4009600365"));
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("取消", null);
+            }
+            mContactUsDialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

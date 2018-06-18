@@ -113,13 +113,18 @@ public class HomeFragment extends BaseFragment<IOrderManagerView, OrderManagerPr
 
     @Override
     public void showOrders(List<Order> orders) {
-        if (orders == null || orders.isEmpty()){
+        if (orders == null){
             //显示提示
             mTvTip.setVisibility(View.VISIBLE);
             return;
         }
 
-        mTvTip.setVisibility(View.GONE);
+        if (orders.isEmpty()){
+            mTvTip.setVisibility(View.VISIBLE);
+        }else {
+            mTvTip.setVisibility(View.GONE);
+        }
+
         mOrders.clear();
         mOrders.addAll(orders);
         mAdapter.notifyDataSetChanged();

@@ -1,8 +1,10 @@
 package com.sun.fastdelivery.view.user;
 
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -37,10 +39,11 @@ import com.amap.api.services.geocoder.RegeocodeAddress;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
 import com.sun.fastdelivery.R;
+import com.sun.fastdelivery.utils.AppInstallUtils;
 import com.sun.fastdelivery.utils.ToastUtils;
 import com.sun.fastdelivery.utils.UserSpUtils;
-import com.sun.fastdelivery.view.rider.RiderRegisterActivity;
-import com.sun.fastdelivery.view.rider.RiderUserMainActivity;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,6 +101,7 @@ public class UserMainActivity extends AppCompatActivity
     private AlertDialog.Builder mLogoutDialog;
     private AlertDialog.Builder mAboutDialog;//关于对话框
     private AlertDialog.Builder mRuleDialog;//配送规则对话框
+    private AlertDialog.Builder mInstallRiderDialog;//提示安装骑手端对话框
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -245,8 +249,39 @@ public class UserMainActivity extends AppCompatActivity
             Intent intent = new Intent(this, OrderManagerActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_bike) {
-            Intent intent = new Intent(this, RiderRegisterActivity.class);
-            startActivity(intent);
+            //判断用户是否安装了骑手端app，如果安装则直接跳转到骑手端app，没有则提示安装
+            String riderPackName = "com.sun.fastdelivery.rider";
+            if (AppInstallUtils.isAppHasInstalled(this, riderPackName)){
+                //直接跳转
+                Intent intent = new Intent();
+                ComponentName  componentName = new ComponentName(riderPackName, "com.sun.fastdelivery.view.SplashActivity");
+                intent.setComponent(componentName);
+                startActivity(intent);
+            }else {
+                //提示安装
+                if (mInstallRiderDialog == null){
+                    mInstallRiderDialog = new AlertDialog.Builder(this)
+                            .setMessage("您还没安装骑手端，是否安装？")
+                            .setPositiveButton("安装", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //判断本地有没有安装包
+                                    String apkFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/rider_app.apk";
+                                    File file = new File(apkFilePath);
+                                    if (file.exists()){
+                                        AppInstallUtils.installApp(UserMainActivity.this, apkFilePath);
+                                    }else {
+                                        //从assets将apk复制到本地，然后再安装
+                                        if (AppInstallUtils.copyApkFromAssets(UserMainActivity.this, "rider_app.apk", apkFilePath)){
+                                            AppInstallUtils.installApp(UserMainActivity.this, apkFilePath);
+                                        }
+                                    }
+                                }
+                            })
+                            .setNegativeButton("取消", null);
+                }
+                mInstallRiderDialog.show();
+            }
         } else if (id == R.id.nav_rule) {
             if (mRuleDialog == null){
                 mRuleDialog = new AlertDialog.Builder(this)

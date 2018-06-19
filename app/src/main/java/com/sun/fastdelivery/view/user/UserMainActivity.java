@@ -330,6 +330,7 @@ public class UserMainActivity extends AppCompatActivity
                         .setNegativeButton("取消", null);
             }
             mContactUsDialog.show();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

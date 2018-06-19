@@ -153,7 +153,7 @@ public class OrderModel {
             params.put("userId", userId);
         }
         if (riderUserId != ORDER_PARAMS_NONE){
-            params.put("rider", riderUserId);
+            params.put("riderId", riderUserId);
         }
         if (status != ORDER_PARAMS_NONE){
             params.put("status", status);

@@ -272,15 +272,36 @@
             android:layout_centerVertical="true"/>
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btnCreateOrder"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="50dp"
-        android:text="创建订单"
-        android:textColor="@color/white"
-        android:background="@drawable/blue_corners"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnCreateOrder"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:text="创建订单"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_corners"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:text="修改"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_corners"
+            />
+    </LinearLayout>
+
+
+
+
 </LinearLayout>

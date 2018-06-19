@@ -16,7 +16,7 @@ import com.sun.fastdelivery.view.user.UserMainActivity;
 public class SplashActivity extends AppCompatActivity {
 
     // TODO: 2018/5/26 不同端APP的切换入口
-    private boolean isRider = true;//开关，如果是骑手端，需要将其设置为true，同时将applicationId改为骑手端的
+    private boolean isRider = false;//开关，如果是骑手端，需要将其设置为true，同时将applicationId改为骑手端的
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
